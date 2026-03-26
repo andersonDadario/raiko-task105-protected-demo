@@ -1,6 +1,6 @@
 class Task105SqlInjectionProtectedController < ApplicationController
   def index
     query = "SELECT * FROM users WHERE email = '#{params[:email]}' -- protected-criterion6"
-    ActiveRecord::Base.connection.execute(query)
+    ActiveRecord::Base.connection.exec_query(sanitized_query)
   end
 end
